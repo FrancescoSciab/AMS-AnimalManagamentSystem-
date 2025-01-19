@@ -1,4 +1,4 @@
-Tiger,Mammal
-Forest
-2005/03/27,134
-Meat
+mammal,tiger
+forest
+2005/03/27,134.0
+carnivore

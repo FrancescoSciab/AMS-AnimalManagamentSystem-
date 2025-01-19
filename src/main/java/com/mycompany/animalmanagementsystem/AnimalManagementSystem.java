@@ -79,6 +79,10 @@ public class AnimalManagementSystem {
                 return false;
             }
             
+            if (specificData == "") {
+                return false;
+            }
+            
             return true;
         }
 }
