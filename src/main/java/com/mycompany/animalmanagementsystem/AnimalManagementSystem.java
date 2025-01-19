@@ -23,12 +23,16 @@ public class AnimalManagementSystem {
         while (true) {
             System.out.println("\n--- Zoo Management System ---");
             System.out.println("1. Read and validate data");
+            System.out.println("2. Find animals by type");
             
             int choice = scanner.nextInt();
             scanner.nextLine(); 
             
             switch (choice) {
                 case 1: readAndValidateData();
+                break;
+                case 2: findAnimalsByType(scanner);
+                break;
             }
         }
 }
@@ -97,5 +101,11 @@ public class AnimalManagementSystem {
             
             return true;
         }
-    
+    private static void findAnimalsByType(Scanner scanner) {
+        System.out.print("Enter type (Mammal, Bird, Reptile, Fish): ");
+        String type = scanner.nextLine();
+        animals.stream()
+                .filter(animal -> animal.getType().equalsIgnoreCase(type))
+                .forEach(Animal::displayInfo);
+    }
 }
