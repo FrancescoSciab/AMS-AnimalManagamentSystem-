@@ -37,9 +37,13 @@ public class AnimalManagementSystem {
                         
                         switch (species.toLowerCase()) {
                             case "mammal": animals.add(new Mammal(species, name, habitat, dob, weight, specificData));
+                            break;
                             case "bird": animals.add(new Bird(species, name, habitat, dob, weight, Double.parseDouble(specificData)));
+                            break;
                             case "reptile": animals.add(new Reptile(species, name, habitat, dob, weight, Boolean.parseBoolean(specificData)));
+                            break;
                             case "fish": animals.add(new Fish(species, name, habitat, dob, weight, specificData));
+                            break;
                             default: System.out.println("Unknown species type: " + species);
                     }
 //                        
@@ -76,10 +80,6 @@ public class AnimalManagementSystem {
                 }
             } catch (NumberFormatException e) {
                 System.out.println("Invalid weight: " + dobAndWeight[1]);
-                return false;
-            }
-            
-            if (specificData == "") {
                 return false;
             }
             

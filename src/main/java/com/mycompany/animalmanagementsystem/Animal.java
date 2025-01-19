@@ -15,6 +15,7 @@ abstract class Animal {
     protected String habitat;
     protected String dob; // Date of Birth in yyyy/MM/dd format
     protected double weight;
+    
 
     public Animal(String species, String name, String habitat, String dob, double weight) {
         this.species = species;
