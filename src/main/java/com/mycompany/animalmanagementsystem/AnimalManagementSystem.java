@@ -9,7 +9,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Scanner; 
 import java.util.List;
-//import java.io.IOException;
+import java.io.IOException;
+
 public class AnimalManagementSystem {
 
     public static void main(String[] args) {
@@ -31,6 +32,7 @@ public class AnimalManagementSystem {
                         String dob = dobAndWeight[0];
                         double weight = Double.parseDouble(dobAndWeight[1]);
                         
+                        System.out.println("No errors with data");
 //                        
                     }
                 }
