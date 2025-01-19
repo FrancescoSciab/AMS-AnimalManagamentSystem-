@@ -24,6 +24,10 @@ public class AnimalManagementSystem {
             System.out.println("\n--- Zoo Management System ---");
             System.out.println("1. Read and validate data");
             System.out.println("2. Find animals by type");
+            System.out.println("3. Find animals by habitat");
+            System.out.println("4. Find animals by name");
+            System.out.println("5. Quit");
+            System.out.println("Choose an option");
             
             int choice = scanner.nextInt();
             scanner.nextLine(); 
@@ -33,6 +37,15 @@ public class AnimalManagementSystem {
                 break;
                 case 2: findAnimalsByType(scanner);
                 break;
+                case 3: findAnimalsByHabitat(scanner);
+                break;
+                case 4: findAnimalsByName(scanner);
+                break;
+                case 5: {
+                    System.out.println("Exsting system. Goodbye!");
+                    return;
+                }
+                default: System.out.println("Invalid choice. Try again");
             }
         }
 }
@@ -106,6 +119,20 @@ public class AnimalManagementSystem {
         String type = scanner.nextLine();
         animals.stream()
                 .filter(animal -> animal.getType().equalsIgnoreCase(type))
+                .forEach(Animal::displayInfo);
+    }
+    private static void findAnimalsByHabitat(Scanner scanner) {
+        System.out.print("Enter habitat: ");
+        String habitat = scanner.nextLine();
+        animals.stream()
+                .filter(animal -> animal.getHabitat().equalsIgnoreCase(habitat))
+                .forEach(Animal::displayInfo);
+    }
+    private static void findAnimalsByName(Scanner scanner) {
+        System.out.print("Enter name: ");
+        String name = scanner.nextLine();
+        animals.stream()
+                .filter(animal -> animal.getName().equalsIgnoreCase(name))
                 .forEach(Animal::displayInfo);
     }
 }
