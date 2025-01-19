@@ -17,8 +17,20 @@ public class AnimalManagementSystem {
     private static List<Animal> animals = new ArrayList<>();
 
     public static void main(String[] args) {
-            readAndValidateData();
-//        
+        Scanner scanner = new Scanner(System.in);
+        
+        
+        while (true) {
+            System.out.println("\n--- Zoo Management System ---");
+            System.out.println("1. Read and validate data");
+            
+            int choice = scanner.nextInt();
+            scanner.nextLine(); 
+            
+            switch (choice) {
+                case 1: readAndValidateData();
+            }
+        }
 }
     private static void readAndValidateData() {
             try (BufferedReader reader = new BufferedReader(new FileReader("animals.txt"))) {
@@ -85,4 +97,5 @@ public class AnimalManagementSystem {
             
             return true;
         }
+    
 }
