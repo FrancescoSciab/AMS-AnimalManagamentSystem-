@@ -51,6 +51,7 @@ public class AnimalManagementSystem {
 }
     private static void readAndValidateData() {
             try (BufferedReader reader = new BufferedReader(new FileReader("animals.txt"))) {
+                //Declared before the loop to ensure the storage of the result of each readLine() call
                 String line;
                 //null means that the end of the file has been reached
                 while ((line = reader.readLine()) != null) {
@@ -95,14 +96,14 @@ public class AnimalManagementSystem {
             
             //Habitat
             List<String> validHabitats = List.of("forest", "desert", "ocean", "freshwater");
-            if (!validHabitats.contains(habitat.toLowerCase())) {
+            if (!validHabitats.contains(habitat.toLowerCase()) || habitat.isEmpty()) {
                 System.out.println("Invalid habitat: " + habitat + "Habitat available: forest, desert, ocean, freshwater");
                 return false;
             }
             
             //Date of Birth and Weight
-            if (!dobAndWeight[0].matches("\\d{4}/\\d{2}/\\d{2}")) {
-                System.out.println("Invalid date of birth: " + dobAndWeight[0] + "The Date of Birth must be in the form yyyy/mm/dd eg 2025/01/15");
+            if (!dobAndWeight[0].matches("\\d{4}/\\d{2}/\\d{2}") || dobAndWeight.length != 2) {
+                System.out.println("Invalid date of birth or weight: " + dobAndWeight[0] + "The Date of Birth and Weight must be in the form yyyy/mm/dd,135.0");
                 return false;
             }
             
