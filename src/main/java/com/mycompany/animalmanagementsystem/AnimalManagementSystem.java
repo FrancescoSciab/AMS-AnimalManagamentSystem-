@@ -76,11 +76,11 @@ public class AnimalManagementSystem {
                             case "fish": animals.add(new Fish(species, name, habitat, dob, weight, specificData));
                             break;
                             default: System.out.println("Unknown species type: " + species);
-                    }
-//                        
+                        }
+                        System.out.println("Data read and validated successfully.");
                     }
                 }
-                System.out.println("Data read and validated successfully.");
+                
             } catch (IOException e) {
                 System.out.println("Error reading file: " + e.getMessage());
             }

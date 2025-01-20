@@ -1,4 +1,4 @@
 mammal,tiger
 forest
-2005/03/27,134.0
+2005/12/07,145.0
 carnivore
