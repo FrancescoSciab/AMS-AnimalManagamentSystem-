@@ -27,7 +27,7 @@ public class AnimalManagementSystem {
             System.out.println("3. Find animals by habitat");
             System.out.println("4. Find animals by name");
             System.out.println("5. Quit");
-            System.out.println("Choose an option");
+            System.out.println("Choose an option by typing the number of the action you want to run");
             
             int choice = scanner.nextInt();
             scanner.nextLine(); 
@@ -52,6 +52,7 @@ public class AnimalManagementSystem {
     private static void readAndValidateData() {
             try (BufferedReader reader = new BufferedReader(new FileReader("animals.txt"))) {
                 String line;
+                //null means that the end of the file has been reached
                 while ((line = reader.readLine()) != null) {
                     String[] speciesAndName = line.split(",");
                     String habitat = reader.readLine();
@@ -85,26 +86,30 @@ public class AnimalManagementSystem {
         
     }
     private static boolean isValid(String[] speciesAndName, String habitat, String[] dobAndWeight, String specificData) {
+        
+            //species and name
             if (speciesAndName.length != 2 || !speciesAndName[0].matches("[a-zA-Z]+") || speciesAndName[1].isEmpty()) {
-                System.out.println("Invalid species or name.");
+                System.out.println("Invalid species or name. The species must be text only and the name can be text and/or numbers");
                 return false;
             }
             
+            //Habitat
             List<String> validHabitats = List.of("forest", "desert", "ocean", "freshwater");
             if (!validHabitats.contains(habitat.toLowerCase())) {
-                System.out.println("Invalid habitat: " + habitat);
+                System.out.println("Invalid habitat: " + habitat + "Habitat available: forest, desert, ocean, freshwater");
                 return false;
             }
             
+            //Date of Birth and Weight
             if (!dobAndWeight[0].matches("\\d{4}/\\d{2}/\\d{2}")) {
-                System.out.println("Invalid date of birth: " + dobAndWeight[0]);
+                System.out.println("Invalid date of birth: " + dobAndWeight[0] + "The Date of Birth must be in the form yyyy/mm/dd eg 2025/01/15");
                 return false;
             }
             
             try {
                 double weight = Double.parseDouble(dobAndWeight[1]);
                 if (weight <= 0) {
-                    System.out.println("Invalid weight: " + dobAndWeight[1]);
+                    System.out.println("Invalid weight: " + dobAndWeight[1] + "The weight must be a positive double");
                     return false;
                 }
             } catch (NumberFormatException e) {
