@@ -77,7 +77,7 @@ public class AnimalManagementSystem {
                             break;
                             default: System.out.println("Unknown species type: " + species);
                         }
-                        System.out.println("Data read and validated successfully.");
+                        System.out.println(species + " data read and validated successfully.");
                     }
                 }
                 
@@ -88,39 +88,47 @@ public class AnimalManagementSystem {
     }
     private static boolean isValid(String[] speciesAndName, String habitat, String[] dobAndWeight, String specificData) {
         
-            //species and name
-            if (speciesAndName.length != 2 || !speciesAndName[0].matches("[a-zA-Z]+") || speciesAndName[1].isEmpty()) {
-                System.out.println("Invalid species or name. The species must be text only and the name can be text and/or numbers");
+            //Species
+            if (speciesAndName.length != 2 || !speciesAndName[0].matches("[a-zA-Z]+") || speciesAndName[0].isEmpty()) {
+                System.out.println("Invalid" + speciesAndName[0] + "species. The species must be text only");
+                return false;
+            }
+            
+            //Name
+            if (speciesAndName.length != 2 || !speciesAndName[1].matches("[a-zA-Z0-9]+") || speciesAndName[1].isEmpty()) {
+                System.out.println("Invalid" + speciesAndName[1] + "name. The name must be text and/or numbers");
                 return false;
             }
             
             //Habitat
             List<String> validHabitats = List.of("forest", "desert", "ocean", "freshwater");
             if (!validHabitats.contains(habitat.toLowerCase()) || habitat.isEmpty()) {
-                System.out.println("Invalid habitat: " + habitat + "Habitat available: forest, desert, ocean, freshwater");
+                System.out.println("Invalid habitat: " + habitat + ". Habitat available: forest, desert, ocean, freshwater");
                 return false;
             }
             
-            //Date of Birth and Weight
+            //Date of Birth 
             if (!dobAndWeight[0].matches("\\d{4}/\\d{2}/\\d{2}") || dobAndWeight.length != 2) {
-                System.out.println("Invalid date of birth or weight: " + dobAndWeight[0] + "The Date of Birth and Weight must be in the form yyyy/mm/dd,135.0");
+                System.out.println("Invalid date of birth: " + dobAndWeight[0] + ". The Date of Birth and Weight must be in the form yyyy/mm/dd,135.0");
                 return false;
             }
             
+            //Weight
             try {
                 double weight = Double.parseDouble(dobAndWeight[1]);
                 if (weight <= 0) {
-                    System.out.println("Invalid weight: " + dobAndWeight[1] + "The weight must be a positive decimal number");
+                    System.out.println("Invalid weight: " + dobAndWeight[1] + ". The weight must be a positive decimal number");
                     return false;
                 }
             } catch (NumberFormatException e) {
                 System.out.println("Invalid weight: " + dobAndWeight[1]);
                 return false;
             }
-            //specific data
+            
+            //Specific Data
             switch(speciesAndName[0]) {
                 case "mammal": if(!specificData.matches("[a-zA-Z]+") || specificData.isEmpty()) {
-                        System.out.println("Invalid fur type. Field can't be empty and must be text only");
+                        System.out.println("Invalid " + specificData + " fur type. Field can't be empty and must be text only");
                         return false;
                 };
                 break;
@@ -137,7 +145,7 @@ public class AnimalManagementSystem {
                 };
                 break;
                 case "fish": if(!specificData.matches("[a-zA-Z]+") || specificData.isEmpty()) {
-                        System.out.println("Invalid water type. Field can't be empty and must be text only");
+                        System.out.println("Invalid" + specificData + "water type. Field can't be empty and must be text only");
                         return false;
                 };
                 break;
