@@ -71,7 +71,7 @@ public class AnimalManagementSystem {
                             break;
                             case "bird": animals.add(new Bird(species, name, habitat, dob, weight, Double.parseDouble(specificData)));
                             break;
-                            case "reptile": animals.add(new Reptile(species, name, habitat, dob, weight, Boolean.parseBoolean(specificData)));
+                            case "reptile": animals.add(new Reptile(species, name, habitat, dob, weight, specificData));
                             break;
                             case "fish": animals.add(new Fish(species, name, habitat, dob, weight, specificData));
                             break;
@@ -110,12 +110,37 @@ public class AnimalManagementSystem {
             try {
                 double weight = Double.parseDouble(dobAndWeight[1]);
                 if (weight <= 0) {
-                    System.out.println("Invalid weight: " + dobAndWeight[1] + "The weight must be a positive double");
+                    System.out.println("Invalid weight: " + dobAndWeight[1] + "The weight must be a positive decimal number");
                     return false;
                 }
             } catch (NumberFormatException e) {
                 System.out.println("Invalid weight: " + dobAndWeight[1]);
                 return false;
+            }
+            //specific data
+            switch(speciesAndName[0]) {
+                case "mammal": if(!specificData.matches("[a-zA-Z]+") || specificData.isEmpty()) {
+                        System.out.println("Invalid fur type. Field can't be empty and must be text only");
+                        return false;
+                };
+                break;
+                case "bird": 
+                    double wingSpan = Double.parseDouble(specificData);
+                    if(wingSpan <= 0) {
+                        System.out.println("Invalid wing span. Field must contain a positive decimal number");
+                        return false;
+                };
+                break;
+                case "reptile": if(!specificData.matches("yes|no")) {
+                        System.out.println("Invalid " + speciesAndName[0] + " value. Field must contain a yes or no only");
+                        return false;
+                };
+                break;
+                case "fish": if(!specificData.matches("[a-zA-Z]+") || specificData.isEmpty()) {
+                        System.out.println("Invalid water type. Field can't be empty and must be text only");
+                        return false;
+                };
+                break;
             }
             
             return true;

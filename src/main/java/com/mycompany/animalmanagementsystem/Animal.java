@@ -75,9 +75,9 @@ class Bird extends Animal {
 }
 
 class Reptile extends Animal {
-    private boolean isVenomous;
+    private String isVenomous;
 
-    public Reptile(String species, String name, String habitat, String dob, double weight, boolean isVenomous) {
+    public Reptile(String species, String name, String habitat, String dob, double weight, String isVenomous) {
         super(species, name, habitat, dob, weight);
         this.isVenomous = isVenomous;
     }
