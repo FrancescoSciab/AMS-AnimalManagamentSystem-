@@ -30,10 +30,19 @@ public class AnimalManagementSystem {
             System.out.println("6. Quit");
             System.out.println("Choose an option by typing the number of the action you want to run");
             
-            int choice = scanner.nextInt();
-            scanner.nextLine(); 
+            int choice;
+            try {
+                choice = scanner.nextInt();
+                scanner.nextLine(); 
+            } catch(java.util.InputMismatchException e) {
+                System.out.println("Invalid input. Please enter a number between 1 and 6.");
+                scanner.nextLine();
+                continue; //Restart the loop
+            }
+            
             
             switch (choice) {
+                //user has to import data first
                 case 1: readAndValidateData();
                 break;
                 case 2: 
