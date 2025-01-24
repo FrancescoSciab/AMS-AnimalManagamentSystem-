@@ -22,7 +22,7 @@ public class AnimalManagementSystem {
         
         while (true) {
             System.out.println("\n--- Zoo Management System ---");
-            System.out.println("1. Read and validate data");
+            System.out.println("1. Import data");
             System.out.println("2. Find animals by type");
             System.out.println("3. Find animals by habitat");
             System.out.println("4. Find animals by name");
@@ -42,7 +42,7 @@ public class AnimalManagementSystem {
                 case 4: findAnimalsByName(scanner);
                 break;
                 case 5: {
-                    System.out.println("Exsting system. Goodbye!");
+                    System.out.println("Exiting system. Goodbye!");
                     return;
                 }
                 default: System.out.println("Invalid choice. Try again");
