@@ -96,19 +96,22 @@ public class AnimalManagementSystem {
                         
                         switch (species.toLowerCase()) {
                             case "mammal": animals.add(new Mammal(species, type, name, habitat, dob, weight, specificData));
+                            System.out.println(species + " data read and validated successfully.");
                             break;
                             case "bird": animals.add(new Bird(species, type, name, habitat, dob, weight, Double.parseDouble(specificData)));
+                            System.out.println(species + " data read and validated successfully.");
                             break;
                             case "reptile": animals.add(new Reptile(species, type, name, habitat, dob, weight, specificData));
+                            System.out.println(species + " data read and validated successfully.");
                             break;
                             case "fish": animals.add(new Fish(species, type, name, habitat, dob, weight, specificData));
+                            System.out.println(species + " data read and validated successfully.");
                             break;
-                            default: System.out.println("Unknown species species: " + species);
+                            default: System.out.println("Unknown species: " + species);
                         }
-                        System.out.println(species + " data read and validated successfully.");
+                        
                     }
                 }
-                
             } catch (IOException e) {
                 System.out.println("Error reading file: " + e.getMessage());
             }
