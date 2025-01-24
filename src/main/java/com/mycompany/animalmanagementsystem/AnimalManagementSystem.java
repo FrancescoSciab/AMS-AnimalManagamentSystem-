@@ -65,18 +65,19 @@ public class AnimalManagementSystem {
                     
                     if (isValid(speciesAndName, habitat, dobAndWeight, specificData)) {
                         String species = speciesAndName[0];
-                        String name = speciesAndName[1];
+                        String type = speciesAndName[1];
+                        String name = speciesAndName[2];
                         String dob = dobAndWeight[0];
                         double weight = Double.parseDouble(dobAndWeight[1]);
                         
                         switch (species.toLowerCase()) {
-                            case "mammal": animals.add(new Mammal(species, name, habitat, dob, weight, specificData));
+                            case "mammal": animals.add(new Mammal(species, type, name, habitat, dob, weight, specificData));
                             break;
-                            case "bird": animals.add(new Bird(species, name, habitat, dob, weight, Double.parseDouble(specificData)));
+                            case "bird": animals.add(new Bird(species, type, name, habitat, dob, weight, Double.parseDouble(specificData)));
                             break;
-                            case "reptile": animals.add(new Reptile(species, name, habitat, dob, weight, specificData));
+                            case "reptile": animals.add(new Reptile(species, type, name, habitat, dob, weight, specificData));
                             break;
-                            case "fish": animals.add(new Fish(species, name, habitat, dob, weight, specificData));
+                            case "fish": animals.add(new Fish(species, type, name, habitat, dob, weight, specificData));
                             break;
                             default: System.out.println("Unknown species species: " + species);
                         }
