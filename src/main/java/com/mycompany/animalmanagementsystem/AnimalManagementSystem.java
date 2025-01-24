@@ -23,10 +23,11 @@ public class AnimalManagementSystem {
         while (true) {
             System.out.println("\n--- Zoo Management System ---");
             System.out.println("1. Import data");
-            System.out.println("2. Find animals by type");
-            System.out.println("3. Find animals by habitat");
-            System.out.println("4. Find animals by name");
-            System.out.println("5. Quit");
+            System.out.println("2. Find animals by Species");
+            System.out.println("3. Find animals by Habitat");
+            System.out.println("4. Find animals by Type");
+            System.out.println("5. Find animals by Name");
+            System.out.println("6. Quit");
             System.out.println("Choose an option by typing the number of the action you want to run");
             
             int choice = scanner.nextInt();
@@ -35,13 +36,15 @@ public class AnimalManagementSystem {
             switch (choice) {
                 case 1: readAndValidateData();
                 break;
-                case 2: findAnimalsByType(scanner);
+                case 2: findAnimalsBySpecies(scanner);
                 break;
                 case 3: findAnimalsByHabitat(scanner);
                 break;
-                case 4: findAnimalsByName(scanner);
+                case 4: findAnimalsByType(scanner);
                 break;
-                case 5: {
+                case 5: findAnimalsByName(scanner);
+                break;
+                case 6: {
                     System.out.println("Exiting system. Goodbye!");
                     return;
                 }
@@ -75,7 +78,7 @@ public class AnimalManagementSystem {
                             break;
                             case "fish": animals.add(new Fish(species, name, habitat, dob, weight, specificData));
                             break;
-                            default: System.out.println("Unknown species type: " + species);
+                            default: System.out.println("Unknown species species: " + species);
                         }
                         System.out.println(species + " data read and validated successfully.");
                     }
@@ -89,14 +92,20 @@ public class AnimalManagementSystem {
     private static boolean isValid(String[] speciesAndName, String habitat, String[] dobAndWeight, String specificData) {
         
             //Species
-            if (speciesAndName.length != 2 || !speciesAndName[0].matches("[a-zA-Z]+") || speciesAndName[0].isEmpty()) {
+            if (speciesAndName.length != 3 || !speciesAndName[0].matches("[a-zA-Z]+") || speciesAndName[0].isEmpty()) {
                 System.out.println("Invalid" + speciesAndName[0] + "species. The species must be text only");
                 return false;
             }
             
+            //Type
+            if (speciesAndName.length != 3 || !speciesAndName[1].matches("[a-zA-Z]+") || speciesAndName[1].isEmpty()) {
+                System.out.println("Invalid" + speciesAndName[1] + "type. The name must be text only");
+                return false;
+            }
+            
             //Name
-            if (speciesAndName.length != 2 || !speciesAndName[1].matches("[a-zA-Z0-9]+") || speciesAndName[1].isEmpty()) {
-                System.out.println("Invalid" + speciesAndName[1] + "name. The name must be text and/or numbers");
+            if (speciesAndName.length != 3 || !speciesAndName[2].matches("[a-zA-Z0-9]+") || speciesAndName[2].isEmpty()) {
+                System.out.println("Invalid" + speciesAndName[2] + "name. The name must be text and/or numbers");
                 return false;
             }
             
@@ -153,11 +162,11 @@ public class AnimalManagementSystem {
             
             return true;
         }
-    private static void findAnimalsByType(Scanner scanner) {
-        System.out.print("Enter type (Mammal, Bird, Reptile, Fish): ");
-        String type = scanner.nextLine();
+    private static void findAnimalsBySpecies(Scanner scanner) {
+        System.out.print("Enter species (Mammal, Bird, Reptile, Fish): ");
+        String species = scanner.nextLine();
         animals.stream()
-                .filter(animal -> animal.getType().equalsIgnoreCase(type))
+                .filter(animal -> animal.getSpecies().equalsIgnoreCase(species))
                 .forEach(Animal::displayInfo);
     }
     private static void findAnimalsByHabitat(Scanner scanner) {
@@ -167,8 +176,15 @@ public class AnimalManagementSystem {
                 .filter(animal -> animal.getHabitat().equalsIgnoreCase(habitat))
                 .forEach(Animal::displayInfo);
     }
+    private static void findAnimalsByType(Scanner scanner) {
+        System.out.print("Enter type: ");
+        String type = scanner.nextLine();
+        animals.stream()
+                .filter(animal -> animal.getType().equalsIgnoreCase(type))
+                .forEach(Animal::displayInfo);
+    }
     private static void findAnimalsByName(Scanner scanner) {
-        System.out.print("Enter name: ");
+        System.out.println("(Enter Name: ");
         String name = scanner.nextLine();
         animals.stream()
                 .filter(animal -> animal.getName().equalsIgnoreCase(name))
