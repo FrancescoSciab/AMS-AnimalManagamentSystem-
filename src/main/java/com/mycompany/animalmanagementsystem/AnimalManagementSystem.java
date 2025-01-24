@@ -36,13 +36,28 @@ public class AnimalManagementSystem {
             switch (choice) {
                 case 1: readAndValidateData();
                 break;
-                case 2: findAnimalsBySpecies(scanner);
+                case 2: 
+                    if (!isAnimalsListEmpty()) {
+                        findAnimalsBySpecies(scanner);
+                    }
                 break;
-                case 3: findAnimalsByHabitat(scanner);
+                case 3: 
+                    if (!isAnimalsListEmpty()) {
+                        findAnimalsByHabitat(scanner);
+                    }
+                    
                 break;
-                case 4: findAnimalsByType(scanner);
+                case 4: 
+                    if (!isAnimalsListEmpty()) {
+                        findAnimalsByType(scanner);
+                    }
+                    
                 break;
-                case 5: findAnimalsByName(scanner);
+                case 5: 
+                    if (!isAnimalsListEmpty()) {
+                        findAnimalsByName(scanner);
+                    }
+                    
                 break;
                 case 6: {
                     System.out.println("Exiting system. Goodbye!");
@@ -185,10 +200,18 @@ public class AnimalManagementSystem {
                 .forEach(Animal::displayInfo);
     }
     private static void findAnimalsByName(Scanner scanner) {
-        System.out.println("(Enter Name: ");
+        System.out.println("Enter Name: ");
         String name = scanner.nextLine();
         animals.stream()
                 .filter(animal -> animal.getName().equalsIgnoreCase(name))
                 .forEach(Animal::displayInfo);
     }
+    
+    private static boolean isAnimalsListEmpty() {
+    if (animals.isEmpty()) {
+        System.out.println("Please import data first.");
+        return true;
+    }
+    return false;
+}
 }
