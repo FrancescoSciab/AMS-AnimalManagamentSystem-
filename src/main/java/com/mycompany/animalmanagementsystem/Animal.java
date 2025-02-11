@@ -31,7 +31,6 @@ abstract class Animal {
 
     public String getType() {
         return type;
-//                this.getClass().getSimpleName();
     }
 
     public String getHabitat() {
