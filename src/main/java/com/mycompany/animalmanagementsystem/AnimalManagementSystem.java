@@ -12,6 +12,7 @@ import java.util.Scanner;
 import java.util.List;
 import java.io.IOException;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class AnimalManagementSystem {
     private static List<Animal> animals = new ArrayList<>();
@@ -82,15 +83,15 @@ public class AnimalManagementSystem {
                 String line;
                 //null means that the end of the file has been reached
                 while ((line = reader.readLine()) != null) {
-                    String[] speciesAndName = line.split(",");
+                    String[] bioData = line.split(",");
                     String habitat = reader.readLine();
                     String[] dobAndWeight = reader.readLine().split(",");
                     String specificData = reader.readLine();
                     
-                    if (isValid(speciesAndName, habitat, dobAndWeight, specificData)) {
-                        String species = speciesAndName[0];
-                        String type = speciesAndName[1];
-                        String name = speciesAndName[2];
+                    if (isFormatValid(bioData, habitat, dobAndWeight, specificData)) {
+                        String species = bioData[0];
+                        String type = bioData[1];
+                        String name = bioData[2];
                         String dob = dobAndWeight[0];
                         double weight = Double.parseDouble(dobAndWeight[1]);
                         
@@ -109,7 +110,6 @@ public class AnimalManagementSystem {
                             break;
                             default: System.out.println("Unknown species: " + species);
                         }
-                        
                     }
                 }
             } catch (IOException e) {
@@ -117,23 +117,23 @@ public class AnimalManagementSystem {
             }
         
     }
-    private static boolean isValid(String[] speciesAndName, String habitat, String[] dobAndWeight, String specificData) {
+    private static boolean isFormatValid(String[] bioData, String habitat, String[] dobAndWeight, String specificData) {
         
             //Species
-            if (speciesAndName.length != 3 || !speciesAndName[0].matches("[a-zA-Z]+") || speciesAndName[0].isEmpty()) {
-                System.out.println("Invalid" + speciesAndName[0] + "species. The species must be text only");
+            if (bioData.length != 3 || !bioData[0].matches("[a-zA-Z]+") || bioData[0].isEmpty()) {
+                System.out.println("Invalid" + bioData[0] + "species. The species must be text only");
                 return false;
             }
             
             //Type
-            if (speciesAndName.length != 3 || !speciesAndName[1].matches("[a-zA-Z]+") || speciesAndName[1].isEmpty()) {
-                System.out.println("Invalid" + speciesAndName[1] + "type. The name must be text only");
+            if (bioData.length != 3 || !bioData[1].matches("[a-zA-Z]+") || bioData[1].isEmpty()) {
+                System.out.println("Invalid" + bioData[1] + "type. The name must be text only");
                 return false;
             }
             
             //Name
-            if (speciesAndName.length != 3 || !speciesAndName[2].matches("[a-zA-Z0-9]+") || speciesAndName[2].isEmpty()) {
-                System.out.println("Invalid" + speciesAndName[2] + "name. The name must be text and/or numbers");
+            if (bioData.length != 3 || !bioData[2].matches("[a-zA-Z0-9]+") || bioData[2].isEmpty()) {
+                System.out.println("Invalid" + bioData[2] + "name. The name must be text and/or numbers");
                 return false;
             }
             
@@ -163,7 +163,7 @@ public class AnimalManagementSystem {
             }
             
             //Specific Data
-            switch(speciesAndName[0]) {
+            switch(bioData[0]) {
                 case "mammal": if(!specificData.matches("[a-zA-Z]+") || specificData.isEmpty()) {
                         System.out.println("Invalid " + specificData + " fur type. Field can't be empty and must be text only");
                         return false;
@@ -177,7 +177,7 @@ public class AnimalManagementSystem {
                 };
                 break;
                 case "reptile": if(!specificData.matches("yes|no")) {
-                        System.out.println("Invalid " + speciesAndName[0] + " value. Field must contain a yes or no only");
+                        System.out.println("Invalid " + bioData[0] + " value. Field must contain a yes or no only");
                         return false;
                 };
                 break;
@@ -193,30 +193,58 @@ public class AnimalManagementSystem {
     private static void findAnimalsBySpecies(Scanner scanner) {
         System.out.print("Enter species (Mammal, Bird, Reptile, Fish): ");
         String species = scanner.nextLine();
-        animals.stream()
-                .filter(animal -> animal.getSpecies().equalsIgnoreCase(species))
-                .forEach(Animal::displayInfo);
+        
+        List<Animal> filteredAnimals = animals.stream()
+        .filter(animal -> animal.getSpecies().equalsIgnoreCase(species))
+        .collect(Collectors.toList());
+        
+        if (filteredAnimals.isEmpty()) {
+        System.out.println("No animals found with species: " + species);
+        } else {
+            filteredAnimals.forEach(Animal::displayInfo);
+        }
     }
     private static void findAnimalsByHabitat(Scanner scanner) {
         System.out.print("Enter habitat: ");
         String habitat = scanner.nextLine();
-        animals.stream()
-                .filter(animal -> animal.getHabitat().equalsIgnoreCase(habitat))
-                .forEach(Animal::displayInfo);
+        List<Animal> filteredAnimals = animals.stream()
+        .filter(animal -> animal.getHabitat().equalsIgnoreCase(habitat))
+        .collect(Collectors.toList());
+        
+        if (filteredAnimals.isEmpty()) {
+        System.out.println("No animals found with habitat: " + habitat);
+        } else {
+            filteredAnimals.forEach(Animal::displayInfo);
+        }
     }
     private static void findAnimalsByType(Scanner scanner) {
         System.out.print("Enter type: ");
         String type = scanner.nextLine();
-        animals.stream()
-                .filter(animal -> animal.getType().equalsIgnoreCase(type))
-                .forEach(Animal::displayInfo);
+        
+        List<Animal> filteredAnimals = animals.stream()
+        .filter(animal -> animal.getType().equalsIgnoreCase(type))
+        .collect(Collectors.toList());
+        
+        if (filteredAnimals.isEmpty()) {
+        System.out.println("No animals found with type: " + type);
+        } else {
+            filteredAnimals.forEach(Animal::displayInfo);
+        }
+        
     }
     private static void findAnimalsByName(Scanner scanner) {
         System.out.println("Enter Name: ");
         String name = scanner.nextLine();
-        animals.stream()
-                .filter(animal -> animal.getName().equalsIgnoreCase(name))
-                .forEach(Animal::displayInfo);
+        
+        List<Animal> filteredAnimals = animals.stream()
+        .filter(animal -> animal.getName().equalsIgnoreCase(name))
+        .collect(Collectors.toList());
+        
+        if (filteredAnimals.isEmpty()) {
+        System.out.println("No animals found with name: " + name);
+        } else {
+            filteredAnimals.forEach(Animal::displayInfo);
+        }
     }
     
     private static boolean isAnimalsListEmpty() {
