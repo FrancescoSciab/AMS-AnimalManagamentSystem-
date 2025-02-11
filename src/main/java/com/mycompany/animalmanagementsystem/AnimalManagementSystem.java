@@ -146,7 +146,7 @@ public class AnimalManagementSystem {
             
             //Date of Birth 
             if (!dobAndWeight[0].matches("\\d{4}/\\d{2}/\\d{2}") || dobAndWeight.length != 2) {
-                System.out.println("Invalid date of birth: " + dobAndWeight[0] + ". The Date of Birth and Weight must be in the form yyyy/mm/dd,135.0");
+                System.out.println("Invalid date of birth and/or weight. The Date of Birth and Weight must be in the form yyyy/mm/dd,135.0");
                 return false;
             }
             
