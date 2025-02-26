@@ -95,21 +95,9 @@ public class AnimalManagementSystem {
                         String dob = dobAndWeight[0];
                         double weight = Double.parseDouble(dobAndWeight[1]);
                         
-                        switch (species.toLowerCase()) {
-                            case "mammal": animals.add(new Mammal(species, type, name, habitat, dob, weight, specificData));
-                            System.out.println(species + " data read and validated successfully.");
-                            break;
-                            case "bird": animals.add(new Bird(species, type, name, habitat, dob, weight, Double.parseDouble(specificData)));
-                            System.out.println(species + " data read and validated successfully.");
-                            break;
-                            case "reptile": animals.add(new Reptile(species, type, name, habitat, dob, weight, specificData));
-                            System.out.println(species + " data read and validated successfully.");
-                            break;
-                            case "fish": animals.add(new Fish(species, type, name, habitat, dob, weight, specificData));
-                            System.out.println(species + " data read and validated successfully.");
-                            break;
-                            default: System.out.println("Unknown species: " + species);
-                        }
+                        Animal animal = AnimalFactory.createAnimal(species, type, name, habitat, dob, weight, specificData);
+                        animals.add(animal);
+                        System.out.println(animal.type + " added to the list");
                     }
                 }
             } catch (IOException e) {
