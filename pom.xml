@@ -24,4 +24,12 @@
         <maven.compiler.release>23</maven.compiler.release>
         <exec.mainClass>com.mycompany.animalmanagementsystem.AnimalManagementSystem</exec.mainClass>
     </properties>
+    <dependencies>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>9.0.2</version>
+        </dependency>
+    </dependencies>
+    
 </project>
