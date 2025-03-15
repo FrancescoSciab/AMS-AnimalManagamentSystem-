@@ -179,62 +179,6 @@ public class AnimalManagementSystem {
             
             return true;
         }
-//    private static void findAnimalsBySpecies(Scanner scanner) {
-//        System.out.print("Enter species (Mammal, Bird, Reptile, Fish): ");
-//        String species = scanner.nextLine();
-//        
-//        List<Animal> filteredAnimals = animals.stream()
-//        .filter(animal -> animal.getSpecies().equalsIgnoreCase(species))
-//        .collect(Collectors.toList());
-//        
-//        if (filteredAnimals.isEmpty()) {
-//        System.out.println("No animals found with species: " + species);
-//        } else {
-//            filteredAnimals.forEach(Animal::displayInfo);
-//        }
-//    }
-//    private static void findAnimalsByHabitat(Scanner scanner) {
-//        System.out.print("Enter habitat: ");
-//        String habitat = scanner.nextLine();
-//        List<Animal> filteredAnimals = animals.stream()
-//        .filter(animal -> animal.getHabitat().equalsIgnoreCase(habitat))
-//        .collect(Collectors.toList());
-//        
-//        if (filteredAnimals.isEmpty()) {
-//        System.out.println("No animals found with habitat: " + habitat);
-//        } else {
-//            filteredAnimals.forEach(Animal::displayInfo);
-//        }
-//    }
-//    private static void findAnimalsByType(Scanner scanner) {
-//        System.out.print("Enter type: ");
-//        String type = scanner.nextLine();
-//        
-//        List<Animal> filteredAnimals = animals.stream()
-//        .filter(animal -> animal.getType().equalsIgnoreCase(type))
-//        .collect(Collectors.toList());
-//        
-//        if (filteredAnimals.isEmpty()) {
-//        System.out.println("No animals found with type: " + type);
-//        } else {
-//            filteredAnimals.forEach(Animal::displayInfo);
-//        }
-//        
-//    }
-//    private static void findAnimalsByName(Scanner scanner) {
-//        System.out.println("Enter Name: ");
-//        String name = scanner.nextLine();
-//        
-//        List<Animal> filteredAnimals = animals.stream()
-//        .filter(animal -> animal.getName().equalsIgnoreCase(name))
-//        .collect(Collectors.toList());
-//        
-//        if (filteredAnimals.isEmpty()) {
-//        System.out.println("No animals found with name: " + name);
-//        } else {
-//            filteredAnimals.forEach(Animal::displayInfo);
-//        }
-//    }
     
     private static boolean isAnimalsListEmpty() {
     if (animals.isEmpty()) {
