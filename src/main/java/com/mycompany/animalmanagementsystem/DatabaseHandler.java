@@ -18,7 +18,7 @@ import java.util.List;
 public class DatabaseHandler {
     private static final String URL = "jdbc:mysql://localhost:3306/zoo";
     private static final String USER = "root";
-    private static final String PASSWORD = " ";
+    private static final String PASSWORD = "";
     
     String sql = "INSERT INTO zoo_animals (species, type, name, habitat, dob, weight, specific_data) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
@@ -26,6 +26,30 @@ public class DatabaseHandler {
     public void insertAnimals(List<Animal> animals) {
         try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            
+            // Loop through the list of animals
+            for (Animal animal : animals) {
+                pstmt.setString(1, animal.getSpecies());
+                pstmt.setString(2, animal.getType());
+                pstmt.setString(3, animal.getName());
+                pstmt.setString(4, animal.getHabitat());
+                pstmt.setString(5, null);
+                pstmt.setString(6, null);
+                pstmt.setString(7, null);                
+//                // Convert java.util.Date to java.sql.Date for SQL
+//                if (animal.getDob() != null) {
+//                    pstmt.setDate(5, new java.sql.Date(animal.getDob().getTime()));
+//                } else {
+//                    pstmt.setNull(5, java.sql.Types.DATE);
+//                }
+//                
+//                pstmt.setDouble(6, animal.getWeight());
+//                pstmt.setString(7, animal.getSpecificData());
+
+                // Execute the insert
+                pstmt.executeUpdate();
+            }
+            System.out.println("Animals inserted successfully!");
         
         } catch (SQLException e) {
             System.err.println("Database error: " + e.getMessage());

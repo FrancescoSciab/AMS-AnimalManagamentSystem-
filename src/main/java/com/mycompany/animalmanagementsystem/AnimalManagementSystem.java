@@ -98,6 +98,10 @@ public class AnimalManagementSystem {
                         
                         Animal animal = AnimalFactory.createAnimal(species, type, name, habitat, dob, weight, specificData);
                         animals.add(animal);
+                        
+                        DatabaseHandler dbHandler = new DatabaseHandler();
+                        dbHandler.insertAnimals(animals);
+                        
                         System.out.println(animal.type + " added to the list");
                     }
                 }
