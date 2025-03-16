@@ -41,7 +41,9 @@ class ZooManagement {
     public void findAnimalsbySpecies() {
         System.out.print("Enter species: ");
         String input = scanner.nextLine();
-        findAnimals("Species: ", animal -> animal.getSpecies().equalsIgnoreCase(input));
+//        findAnimals("Species: ", animal -> animal.getSpecies().equalsIgnoreCase(input));
+        DatabaseHandler dbHandler = new DatabaseHandler();
+        List<List<String>> animals = dbHandler.retrieveAnimals("species", input);
     }
     public void findAnimalsByHabitat() {
         System.out.print("Enter habitat: ");
