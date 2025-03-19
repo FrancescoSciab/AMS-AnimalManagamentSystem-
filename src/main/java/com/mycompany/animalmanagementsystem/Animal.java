@@ -1,5 +1,6 @@
 package com.mycompany.animalmanagementsystem;
-
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
@@ -15,6 +16,7 @@ abstract class Animal {
     protected String name;
     protected String habitat;
     protected String dob; // Date of Birth in yyyy/MM/dd format
+    private LocalDate formattedDob;
     protected double weight;
     
 
@@ -25,6 +27,20 @@ abstract class Animal {
         this.habitat = habitat;
         this.dob = dob;
         this.weight = weight;
+    }
+    
+    public java.sql.Date getFormattedDob() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+        this.formattedDob = LocalDate.parse(this.dob, formatter);
+        return java.sql.Date.valueOf(formattedDob);
+    }
+
+    public String getDob() {
+        return dob;
+    }
+
+    public double getWeight() {
+        return weight;
     }
 
     public abstract void displayInfo();
